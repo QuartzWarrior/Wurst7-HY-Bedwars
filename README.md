@@ -18,6 +18,34 @@
 
 - **Donations/Perks:** [https://ko-fi.com/wurst](https://go.wimods.net/from/github.com/Wurst-Imperium/Wurst7?to=https://ko-fi.com/wurst)
 
+## Added Features
+
+This fork includes Hypixel-optimized features for competitive gameplay:
+
+### PlayerInfo Hack
+- **Real-time equipment viewer** - See any player's gear and weapon instantly
+- **Long-range detection** - Works up to 1000 blocks (full render distance)
+- **Compact UI** - Minimal 20×92px movable window showing 5 equipment slots
+- **Smart targeting** - Auto-tracks the player in your crosshair
+- **Self-view mode** - Option to display your own equipment when not looking at others
+
+### Enhanced AimAssist Filters
+
+#### Shop NPC Filter
+- **Armor detection** - Automatically filters players with no armor (shop NPCs)
+- **Keyword detection** - Secondary filter for NPCs with shop-related names
+- **Zero false positives** - Won't target Item Shop, Quick Buy, Upgrades, etc.
+
+#### Teammate Filter  
+- **Armor color matching** - Primary detection method for Bedwars/Skywars teams
+- **Scoreboard team sync** - Fallback detection using Minecraft team system
+- **Hypixel-optimized** - Specifically designed for colored leather armor team games
+
+### Usage
+All features are found in the Wurst menu:
+- **PlayerInfo:** Render category → Enable and drag window to preferred position
+- **AimAssist filters:** Combat → AimAssist → Settings (filters enabled by default)
+
 ## Installation
 
 Wurst 7 can be installed just like any other Fabric mod. Here are the basic installation steps:
