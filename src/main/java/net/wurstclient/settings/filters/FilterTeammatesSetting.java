@@ -33,7 +33,7 @@ public final class FilterTeammatesSetting extends EntityFilterCheckbox
 		
 		if(MC.player == null)
 			return true;
-			
+		
 		// Primary check: armor color
 		Integer targetArmorColor = getArmorColor(targetPlayer);
 		Integer playerArmorColor = getArmorColor(MC.player);
@@ -41,16 +41,16 @@ public final class FilterTeammatesSetting extends EntityFilterCheckbox
 		if(targetArmorColor != null && playerArmorColor != null
 			&& targetArmorColor.equals(playerArmorColor))
 			return false;
-			
+		
 		// Fallback: scoreboard team
 		if(targetPlayer.getTeam() != null && MC.player.getTeam() != null
 			&& targetPlayer.getTeam() == MC.player.getTeam())
 			return false;
-
-        // could do nametag but maybe ltr
+		
+		// could do nametag but maybe ltr
 		return true;
 	}
-
+	
 	private Integer getArmorColor(Player player)
 	{
 		EquipmentSlot[] armorSlots = {EquipmentSlot.HEAD, EquipmentSlot.CHEST,
@@ -81,6 +81,13 @@ public final class FilterTeammatesSetting extends EntityFilterCheckbox
 	{
 		return new FilterTeammatesSetting(
 			"Won't target teammates based on armor color (for Hypixel Bedwars/Skywars).",
+			checked);
+	}
+	
+	public static FilterTeammatesSetting genericVision(boolean checked)
+	{
+		return new FilterTeammatesSetting(
+			"Won't show teammates based on armor color (for Hypixel Bedwars/Skywars).",
 			checked);
 	}
 }

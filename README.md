@@ -41,10 +41,17 @@ This fork includes Hypixel-optimized features for competitive gameplay:
 - **Scoreboard team sync** - Fallback detection using Minecraft team system
 - **Hypixel-optimized** - Specifically designed for colored leather armor team games
 
+### Enhanced Radar
+- **Teammate color coding** - Teammates appear in light blue/cyan on the radar
+- **Visual distinction** - Instantly identify friends (blue), teammates (light blue), and enemies (red)
+- **Same detection logic** - Uses armor color matching for Hypixel team games
+- **Optional filter** - Can hide teammates from radar entirely if preferred
+
 ### Usage
 All features are found in the Wurst menu:
 - **PlayerInfo:** Render category → Enable and drag window to preferred position
 - **AimAssist filters:** Combat → AimAssist → Settings (filters enabled by default)
+- **Radar:** Render category → Enable to see color-coded player positions
 
 ## Installation
 

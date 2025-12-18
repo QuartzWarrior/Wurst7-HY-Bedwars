@@ -108,6 +108,11 @@ public final class RadarComponent extends Component
 	{
 		if(WURST.getFriends().isFriend(e))
 			return 0xFF0000FF;
+		
+		// Check if entity is a teammate (light blue/cyan)
+		if(e instanceof Player && isTeammate(e))
+			return 0xFF00FFFF;
+		
 		if(e instanceof Player)
 			return 0xFFFF0000;
 		if(e instanceof Enemy)
@@ -116,6 +121,58 @@ public final class RadarComponent extends Component
 			|| e instanceof WaterAnimal || e instanceof AgeableWaterCreature)
 			return 0xFF00FF00;
 		return 0xFF808080;
+	}
+	
+	private boolean isTeammate(Entity e)
+	{
+		if(!(e instanceof Player player) || MC.player == null)
+			return false;
+		
+		// Check armor color (primary method for Hypixel)
+		Integer targetArmorColor = getArmorColor(player);
+		Integer playerArmorColor = getArmorColor(MC.player);
+		
+		if(targetArmorColor != null && playerArmorColor != null
+			&& targetArmorColor.equals(playerArmorColor))
+			return true;
+		
+		// Check scoreboard team (fallback)
+		if(player.getTeam() != null && MC.player.getTeam() != null
+			&& player.getTeam() == MC.player.getTeam())
+			return true;
+		
+		return false;
+	}
+	
+	private Integer getArmorColor(Player player)
+	{
+		net.minecraft.world.entity.EquipmentSlot[] armorSlots =
+			{net.minecraft.world.entity.EquipmentSlot.HEAD,
+				net.minecraft.world.entity.EquipmentSlot.CHEST,
+				net.minecraft.world.entity.EquipmentSlot.LEGS,
+				net.minecraft.world.entity.EquipmentSlot.FEET};
+		
+		for(net.minecraft.world.entity.EquipmentSlot slot : armorSlots)
+		{
+			net.minecraft.world.item.ItemStack stack =
+				player.getItemBySlot(slot);
+			if(stack.isEmpty())
+				continue;
+			
+			if(stack.is(net.minecraft.world.item.Items.LEATHER_HELMET)
+				|| stack.is(net.minecraft.world.item.Items.LEATHER_CHESTPLATE)
+				|| stack.is(net.minecraft.world.item.Items.LEATHER_LEGGINGS)
+				|| stack.is(net.minecraft.world.item.Items.LEATHER_BOOTS))
+			{
+				net.minecraft.world.item.component.DyedItemColor dyedColor =
+					stack.get(
+						net.minecraft.core.component.DataComponents.DYED_COLOR);
+				if(dyedColor != null)
+					return dyedColor.rgb();
+			}
+		}
+		
+		return null;
 	}
 	
 	@Override

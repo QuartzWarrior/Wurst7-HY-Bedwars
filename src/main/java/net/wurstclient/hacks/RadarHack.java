@@ -44,6 +44,7 @@ public final class RadarHack extends Hack implements UpdateListener
 	private final EntityFilterList entityFilters =
 		new EntityFilterList(FilterPlayersSetting.genericVision(false),
 			FilterSleepingSetting.genericVision(false),
+			FilterTeammatesSetting.genericVision(false),
 			FilterHostileSetting.genericVision(false),
 			FilterPassiveSetting.genericVision(false),
 			FilterPassiveWaterSetting.genericVision(false),
@@ -117,5 +118,10 @@ public final class RadarHack extends Hack implements UpdateListener
 	public boolean isRotateEnabled()
 	{
 		return rotate.isChecked();
+	}
+	
+	public EntityFilterList getEntityFilters()
+	{
+		return entityFilters;
 	}
 }
