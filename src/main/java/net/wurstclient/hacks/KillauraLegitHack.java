@@ -88,6 +88,8 @@ public final class KillauraLegitHack extends Hack implements UpdateListener,
 		new EntityFilterList(FilterPlayersSetting.genericCombat(false),
 			FilterSleepingSetting.genericCombat(true),
 			FilterFlyingSetting.genericCombat(0.5),
+			FilterShopNPCsSetting.genericCombat(true),
+			FilterTeammatesSetting.genericCombat(true),
 			FilterHostileSetting.genericCombat(false),
 			FilterNeutralSetting
 				.genericCombat(AttackDetectingEntityFilter.Mode.OFF),

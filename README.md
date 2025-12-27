@@ -41,6 +41,21 @@ This fork includes Hypixel-optimized features for competitive gameplay:
 - **Scoreboard team sync** - Fallback detection using Minecraft team system
 - **Hypixel-optimized** - Specifically designed for colored leather armor team games
 
+### Enhanced KillauraLegit Filters
+
+#### Shop NPC Filter
+- **Same protection as AimAssist** - Prevents attacking shop NPCs
+- **Enabled by default** - Safe for Hypixel minigames out of the box
+
+#### Teammate Filter  
+- **Same protection as AimAssist** - Prevents attacking teammates
+- **Enabled by default** - Perfect for team-based minigames
+
+### Enhanced PlayerESP
+- **Teammate color coding** - Teammates appear in cyan/turquoise boxes and tracers
+- **Visual distinction** - Instantly identify friends (blue), teammates (cyan), and enemies (color gradient)
+- **Same detection logic** - Uses armor color matching for Hypixel team games
+
 ### Enhanced Radar
 - **Teammate color coding** - Teammates appear in light blue/cyan on the radar
 - **Visual distinction** - Instantly identify friends (blue), teammates (light blue), and enemies (red)
@@ -51,6 +66,8 @@ This fork includes Hypixel-optimized features for competitive gameplay:
 All features are found in the Wurst menu:
 - **PlayerInfo:** Render category → Enable and drag window to preferred position
 - **AimAssist filters:** Combat → AimAssist → Settings (filters enabled by default)
+- **KillauraLegit filters:** Combat → KillauraLegit → Settings (filters enabled by default)
+- **PlayerESP:** Render category → Enable to see color-coded player boxes/tracers
 - **Radar:** Render category → Enable to see color-coded player positions
 
 ## Installation

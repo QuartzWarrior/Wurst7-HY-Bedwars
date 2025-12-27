@@ -139,10 +139,66 @@ public final class PlayerEspHack extends Hack implements UpdateListener,
 		if(WURST.getFriends().contains(e.getName().getString()))
 			return 0x800000FF;
 		
+		// Check if entity is a teammate (cyan/turquoise)
+		if(isTeammate(e))
+			return 0x8000FFFF;
+		
 		float f = MC.player.distanceTo(e) / 20F;
 		float r = Mth.clamp(2 - f, 0, 1);
 		float g = Mth.clamp(f, 0, 1);
 		float[] rgb = {r, g, 0};
 		return RenderUtils.toIntColor(rgb, 0.5F);
+	}
+	
+	private boolean isTeammate(Player player)
+	{
+		if(MC.player == null)
+			return false;
+		
+		// Check armor color (primary method for Hypixel)
+		Integer targetArmorColor = getArmorColor(player);
+		Integer playerArmorColor = getArmorColor(MC.player);
+		
+		if(targetArmorColor != null && playerArmorColor != null
+			&& targetArmorColor.equals(playerArmorColor))
+			return true;
+		
+		// Check scoreboard team (fallback)
+		if(player.getTeam() != null && MC.player.getTeam() != null
+			&& player.getTeam() == MC.player.getTeam())
+			return true;
+		
+		return false;
+	}
+	
+	private Integer getArmorColor(Player player)
+	{
+		net.minecraft.world.entity.EquipmentSlot[] armorSlots =
+			{net.minecraft.world.entity.EquipmentSlot.HEAD,
+				net.minecraft.world.entity.EquipmentSlot.CHEST,
+				net.minecraft.world.entity.EquipmentSlot.LEGS,
+				net.minecraft.world.entity.EquipmentSlot.FEET};
+		
+		for(net.minecraft.world.entity.EquipmentSlot slot : armorSlots)
+		{
+			net.minecraft.world.item.ItemStack stack =
+				player.getItemBySlot(slot);
+			if(stack.isEmpty())
+				continue;
+			
+			if(stack.is(net.minecraft.world.item.Items.LEATHER_HELMET)
+				|| stack.is(net.minecraft.world.item.Items.LEATHER_CHESTPLATE)
+				|| stack.is(net.minecraft.world.item.Items.LEATHER_LEGGINGS)
+				|| stack.is(net.minecraft.world.item.Items.LEATHER_BOOTS))
+			{
+				net.minecraft.world.item.component.DyedItemColor dyedColor =
+					stack.get(
+						net.minecraft.core.component.DataComponents.DYED_COLOR);
+				if(dyedColor != null)
+					return dyedColor.rgb();
+			}
+		}
+		
+		return null;
 	}
 }
